@@ -9,6 +9,7 @@ public class StoreManager : MonoBehaviour
     [SerializeField] private List<GameObject> carModels = new List<GameObject>();
     [SerializeField] private float distanceBetweenCars;
     private List<Transform> carTransform = new List<Transform>();
+    public GameObject CurrentlySelectedCar;
     private void Awake()
     {
         loadCars();
@@ -37,6 +38,8 @@ public class StoreManager : MonoBehaviour
             var CarXSpawn = SpawnOffset + (distanceBetweenCars * (i + Mathf.FloorToInt(carModels.Count / 2)));
             var CurrentCar = Instantiate(carModels[i], new Vector3(CarXSpawn, carModels[i].transform.position.y, carModels[i].transform.position.z), Quaternion.identity, carCatalog);
             carTransform.Add(CurrentCar.transform);
+            if (CurrentCar.transform.position.x == 0)
+                CurrentlySelectedCar = CurrentCar;
         }
     }
 
@@ -65,6 +68,9 @@ public class StoreManager : MonoBehaviour
                 var CarXFix = (CarXSpawnMax + distanceBetweenCars)+ Car.position.x;
                 Car.position = new Vector3(CarXSpawnMax + CarXFix , Car.position.y, Car.position.z);
             }
+            if (Car.position.x == 0)
+                CurrentlySelectedCar = Car.gameObject;
+
         }
     }
 
@@ -91,10 +97,5 @@ public class StoreManager : MonoBehaviour
         }     
        
     }
-
-
-
-
-
 
 }

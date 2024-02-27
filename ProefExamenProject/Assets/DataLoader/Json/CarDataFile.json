@@ -1,0 +1,8 @@
+{
+    "MaxSpeed": 50,
+    "MaxSpeedCount": 5,
+    "GripHandle": 80,
+    "GripHandleCount": 8,
+    "Acceleration": 100,
+    "AccelerationCount": 10
+}

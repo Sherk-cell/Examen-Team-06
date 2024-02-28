@@ -21,6 +21,35 @@ Guido:
   * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
   * Some other Game object
 
+
+# Rollen
+ * **Lead Developer:** Daan 
+* **Lead Artist:** Nando
+* **SCRUM Master:** Dirk
+
+
+<h2>Documentatie en links</h2>
+<h3><ul>
+  <li>Planning</li>
+    <ul>
+      <li><a href="https://trello.com/b/JmeOUUOE/proeve-proeve-ter-bekwamenheid" target="_blank">Trello</a></li>
+      Werkwijze erin zetten? 
+    </ul>
+  <li>Documenten</li>
+    <ul>
+      Gameconcept
+      </ul>
+  <li>Conventies</li>
+    <ul>
+        copy paste dingendie al besproken zijn
+    </ul>
+</ul></h3>
+
+
+
+
+
+
 ## Wave System by Student X
 
 Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line.

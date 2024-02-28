@@ -16,6 +16,7 @@ Daan:
 Dirk:
   * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
   * Some other Game object
+    
 Guido:
   * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
   * Some other Game object

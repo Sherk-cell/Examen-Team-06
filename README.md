@@ -5,7 +5,7 @@ dit moet overeen komen met onze functioneel ontwerp dus maak zeker dat de 2 geli
 # Geproduceerde Game Onderdelen
 
 Byron:
-  * [Car selection](https://github.com/Sherk-cell/Examen-Team-06/tree/feature/Catalog-Swipe/ProefExamenProject/Assets/CarStore/Scripts))
+  * [Car selection](https://github.com/Sherk-cell/Examen-Team-06/tree/feature/Catalog-Swipe/ProefExamenProject/Assets/CarStore/Scripts)
   * [Input system](https://github.com/Sherk-cell/Examen-Team-06/tree/feature/Phone-Input/ProefExamenProject/Assets/Input/Script)
   * [Car upgrades](https://github.com/Sherk-cell/Examen-Team-06/tree/feature/Upgrade-Cars/ProefExamenProject/Assets/CarUpgrade/Scripts)
   * [Data manager](https://github.com/Sherk-cell/Examen-Team-06/blob/feature/Upgrade-Cars/ProefExamenProject/Assets/DataLoader/DataLoader.cs)

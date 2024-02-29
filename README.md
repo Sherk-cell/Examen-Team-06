@@ -1,30 +1,53 @@
-# VoorbeeldExamenRepo
-Een voorbeeld repository voor het examenwerk
-
-In deze repository vind je de informatie over het examen project.
-
-Omschrijf de examenopdracht evt de klant en wat het doel voor de klant is.
-Omschrijf ook beknopt wat het idee van je game is. 
-Een complete en uitgebreide beschrijving komt in het functioneel ontwerp (onderdeel van de [wiki](https://github.com/erwinhenraat/VoorbeeldExamenRepo/wiki))
+<h1> Unnamed Game </h1>
+Voor nu is dit wat dummy text. Hier moeten we nog een leuke beschrijving maken voor de game die wij aan het bouwen zijn.
+dit moet overeen komen met onze functioneel ontwerp dus maak zeker dat de 2 gelijk zijn.
 
 # Geproduceerde Game Onderdelen
 
-Geef per teammember aan welke game onderdelen je hebt geproduceerd. Doe dit met behulp van omschrijvingen visual sheets en screenshots.
-Maak ook een overzicht van alle onderdelen met een link naar de map waarin deze terug te vinden zijn.
-
-Bijv..
-
-Student X:
-  * [Wave System](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/some)
-  * [Some other mechanic X](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_x)
-  * [Some other mechanic Y](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_y)
-Student Y:
-  * Water Shader
+Byron:
+  * [Car selection](https://github.com/Sherk-cell/Examen-Team-06/tree/feature/Catalog-Swipe/ProefExamenProject/Assets/CarStore/Scripts)
+  * [Input system](https://github.com/Sherk-cell/Examen-Team-06/tree/feature/Phone-Input/ProefExamenProject/Assets/Input/Script)
+  * [Car upgrades](https://github.com/Sherk-cell/Examen-Team-06/tree/feature/Upgrade-Cars/ProefExamenProject/Assets/CarUpgrade/Scripts)
+  * [Data manager](https://github.com/Sherk-cell/Examen-Team-06/blob/feature/Upgrade-Cars/ProefExamenProject/Assets/DataLoader/DataLoader.cs)
+    
+Daan:
   * [Some textured and rigged model](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/assets/monsters)
 
-Student Z:
+Dirk:
   * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
   * Some other Game object
+    
+Guido:
+  * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
+  * Some other Game object
+
+
+# Rollen
+ * **Lead Developer:** Daan 
+* **Lead Artist:** Nando
+* **SCRUM Master:** Dirk
+
+
+<h2>Documentatie en links</h2>
+<h3><ul>
+  <li>Planning</li>
+    <ul>
+      <li><a href="https://trello.com/b/JmeOUUOE/proeve-proeve-ter-bekwamenheid" target="_blank">Trello</a></li>
+      Werkwijze erin zetten? 
+    </ul>
+  <li>Documenten</li>
+    <ul>
+      Gameconcept
+      </ul>
+  <li>Conventies</li>
+    <ul>
+        copy paste dingendie al besproken zijn
+    </ul>
+</ul></h3>
+
+
+
+
 
 
 ## Wave System by Student X

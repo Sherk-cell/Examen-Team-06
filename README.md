@@ -18,7 +18,7 @@ Dirk:
   * Some other Game object
     
 Guido:
-  * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
+  * [Player Movement Script:](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
   * Some other Game object
 
 

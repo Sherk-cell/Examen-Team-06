@@ -5,7 +5,8 @@ using UnityEngine;
 public class CarCreatorWindow : EditorWindow
 {
     private string name;
-    [SerializeField] private GameObject model;
+    private GameObject model;
+    private Texture textureBody;
     private int topSpeed;
     private int grip;
     private int acceleration;
@@ -27,6 +28,7 @@ public class CarCreatorWindow : EditorWindow
         acceleration = EditorGUILayout.IntField("Base Acceleration:", acceleration);
         cost = EditorGUILayout.IntField("Cost:", cost);
         model = EditorGUILayout.ObjectField("Model",model, typeof(GameObject), true) as GameObject;
+        textureBody = EditorGUILayout.ObjectField("Texture Body", textureBody, typeof(Texture), true) as Texture;
         if (GUILayout.Button("Create Car"))
         {
             var car = new GameObject(name);
@@ -38,12 +40,12 @@ public class CarCreatorWindow : EditorWindow
             scriptInstance.acceleration = acceleration;
             scriptInstance.topSpeed = topSpeed;
             scriptInstance.grip = grip;
-            scriptInstance.cost = cost;
+            scriptInstance.cost = cost;  
             Instantiate(model, car.transform);
             PrefabUtility.SaveAsPrefabAsset(car, localPath);
             DestroyImmediate(car);
         }
-
-
     }
+    
+    
 }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class CarUpgradeManager : MonoBehaviour
 {
+    [SerializeField] private MockUpPlayer player;
     private int maxSpeed;
     private int maxSpeedCount;
 
@@ -15,6 +16,7 @@ public class CarUpgradeManager : MonoBehaviour
 
     private int acceleration;
     private int accelerationCount;
+    private int upgradeCost = 3;
 
     public int MaxSpeed
     {
@@ -66,7 +68,13 @@ public class CarUpgradeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI maxSpeedText;
     [SerializeField] private TextMeshProUGUI gripHandleText;
     [SerializeField] private TextMeshProUGUI accelerationText;
+    
+    [SerializeField] private TextMeshProUGUI maxSpeedTextCost;
+    [SerializeField] private TextMeshProUGUI gripHandleTextCost;
+    [SerializeField] private TextMeshProUGUI accelerationTextCost;
+    
     public GameObject selectedCar;
+    
 
 
     private void Awake()
@@ -85,11 +93,13 @@ public class CarUpgradeManager : MonoBehaviour
 
     public void UpgrageMaxSpeed()
     {
-        
-        if(maxSpeedCount < maxUpgradeCount)
-        {            
+        var cost = upgradeCost * (MaxSpeedCount + 2);
+        if(maxSpeedCount < maxUpgradeCount && player.coins >= cost)
+        {
+            player.coins -= cost;
             maxSpeed += 10;
             maxSpeedCount++;
+            maxSpeedTextCost.text = cost.ToString();
             DataLoader.SaveCarUpgrades(this);
             for (int i = 0; i < maxSpeedCount; i++)
             {
@@ -101,9 +111,11 @@ public class CarUpgradeManager : MonoBehaviour
     }
     public void UpgradeGripHandle()
     {
-       
+        var cost = upgradeCost * (gripHandleCount + 2);
         if (gripHandleCount < maxUpgradeCount)
         {
+            player.coins -= cost;
+            gripHandleTextCost.text = cost.ToString();
             gripHandle += 10;
             gripHandleCount++;
             DataLoader.SaveCarUpgrades(this);
@@ -117,11 +129,13 @@ public class CarUpgradeManager : MonoBehaviour
     }
     public void UpgradeAcceleration()
     {
-       
+        var cost = upgradeCost * (accelerationCount + 2);
         if (accelerationCount < maxUpgradeCount)
         {
             acceleration += 10;
             accelerationCount++;
+            player.coins -= cost;
+            accelerationTextCost.text = cost.ToString();
             DataLoader.SaveCarUpgrades(this);
             for (int i = 0; i < accelerationCount; i++)
             {
@@ -134,6 +148,14 @@ public class CarUpgradeManager : MonoBehaviour
     public void LoadCarStats()
     {
         DataLoader.LoadCarUpgrades(selectedCar, this);
+        var costMaxSpeed = upgradeCost * (MaxSpeedCount + 1);
+        var costAcceleration = upgradeCost * (accelerationCount + 1);
+        var costGripHandle = upgradeCost * (gripHandleCount + 1);
+
+        maxSpeedTextCost.text = costMaxSpeed.ToString();
+        accelerationTextCost.text = costAcceleration.ToString();
+        gripHandleTextCost.text = costGripHandle.ToString();
+        
         for (int i = 0; i < maxUpgradeCount; i++)
         {
             var tickAcceleration = accelerationTick[i];
@@ -173,6 +195,13 @@ public class CarUpgradeManager : MonoBehaviour
         var maxSpeedTextComponent = maxSpeedText.gameObject.GetComponent<RectTransform>();
         var gripHandleTextComponent = gripHandleText.gameObject.GetComponent<RectTransform>();
         var accelerationTextComponent = accelerationText.gameObject.GetComponent<RectTransform>();
+        var costMaxSpeed = upgradeCost * (MaxSpeedCount + 1);
+        var costAcceleration = upgradeCost * (accelerationCount + 1);
+        var costGripHandle = upgradeCost * (gripHandleCount + 1);
+
+        maxSpeedTextCost.text = costMaxSpeed.ToString();
+        accelerationTextCost.text = costAcceleration.ToString();
+        gripHandleTextCost.text = costGripHandle.ToString();
 
 
         for (int i = 0; i < maxUpgradeCount; i++)

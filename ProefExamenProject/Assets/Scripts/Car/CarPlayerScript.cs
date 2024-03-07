@@ -1,5 +1,4 @@
 using System.Security.Cryptography.X509Certificates;
-using Input.Script;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Experimental.GlobalIllumination;

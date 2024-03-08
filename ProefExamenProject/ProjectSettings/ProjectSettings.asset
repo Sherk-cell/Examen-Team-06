@@ -161,7 +161,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.ProefExamenProject
+    Standalone: com.Team6-Games.ProefExamenProject
   buildNumber:
     Standalone: 0
     VisionOS: 0

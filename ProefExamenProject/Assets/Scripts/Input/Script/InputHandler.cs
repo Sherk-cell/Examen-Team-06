@@ -5,13 +5,12 @@ public class InputHandler : MonoBehaviour
         
     [Header("Phone Input Settings: ")]
     public InputState phoneInput;
-    private bool _leftTouched;
-    private bool _rightTouched;
-
+    private bool leftTouched;
+    private bool rightTouched;
 
     private void Update()
     {
-        switch (UnityEngine.Input.touchCount)
+        switch (Input.touchCount)
         {
             case > 0:
                 TouchHandler();
@@ -32,25 +31,31 @@ public class InputHandler : MonoBehaviour
             {
                 phoneInput = InputState.Left;
                 if (touch.phase == TouchPhase.Began)
-                    _leftTouched = true;
+                    leftTouched = true;
                 if (touch.phase == TouchPhase.Ended)
-                    _leftTouched = false;
+                    leftTouched = false;
 
             }
             else
             {
                 phoneInput = InputState.Right;
                 if (touch.phase == TouchPhase.Began)
-                    _rightTouched = true;
+                    rightTouched = true;
                 if (touch.phase == TouchPhase.Ended)
-                    _rightTouched = false;
+                    rightTouched = false;
             }
-            if (_leftTouched && _rightTouched)
+            if (leftTouched && rightTouched)
+                    rightTouched = true;
+                if (touch.phase == TouchPhase.Ended)
+                    rightTouched = false;
+            }
+            if (leftTouched && rightTouched)
             {
                 phoneInput = InputState.Both;
             }
         }
     }
+
 
     public enum InputState
     {
@@ -59,4 +64,3 @@ public class InputHandler : MonoBehaviour
         Right = 2,
         Both = 4
     }
-}

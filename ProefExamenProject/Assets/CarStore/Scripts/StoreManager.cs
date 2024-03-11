@@ -1,27 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
+using static UnityEngine.Input;
+
+
+
 
 public class StoreManager : MonoBehaviour
 {
+    
+    
     [SerializeField] private Transform carCatalog;
     [SerializeField] private List<GameObject> carModels = new List<GameObject>();
     [SerializeField] private float distanceBetweenCars;
     private List<Transform> carTransform = new List<Transform>();
-    public GameObject CurrentlySelectedCar;
+    public GameObject currentlySelectedCar;
     private void Awake()
     {
-        loadCars();
-        spawnCars();
-    }
-    private void Update()
-    {
-        carTouchHandler();
+        LoadCars();
+        SpawnCars();
     }
 
-
-    private void loadCars()
+    private void LoadCars()
     {
         var cars = Resources.LoadAll<GameObject>("CarModels");
 
@@ -30,64 +31,76 @@ public class StoreManager : MonoBehaviour
             carModels.Add(car);
         }
     }
-    private void spawnCars()
+    private void SpawnCars()
     {
         for (int i = 0; i < carModels.Count; i++)
         {
-            var SpawnOffset = (carModels.Count * distanceBetweenCars) * -1;
-            var CarXSpawn = SpawnOffset + (distanceBetweenCars * (i + Mathf.FloorToInt(carModels.Count / 2)));
-            var CurrentCar = Instantiate(carModels[i], new Vector3(CarXSpawn, carModels[i].transform.position.y, carModels[i].transform.position.z), Quaternion.identity, carCatalog);
-            carTransform.Add(CurrentCar.transform);
-            if (CurrentCar.transform.position.x == 0)
-                CurrentlySelectedCar = CurrentCar;
+            var spawnOffset = (carModels.Count * distanceBetweenCars) * -1;
+            var carXSpawn = spawnOffset + (distanceBetweenCars * (i + Mathf.FloorToInt(carModels.Count / 2)));
+            var currentCar = Instantiate(carModels[i], new Vector3(carXSpawn, carModels[i].transform.position.y, carModels[i].transform.position.z), Quaternion.identity, carCatalog);
+            carTransform.Add(currentCar.transform);
+            if (currentCar.transform.position.x == 0)
+                currentlySelectedCar = currentCar;
         }
     }
 
-
-    private void carPlaceHandler(int TapLocation)
+    public void GoRight()
     {
-        var SpawnOffset = (carModels.Count * distanceBetweenCars) * -1;
-        var CarXSpawnMin = SpawnOffset + (distanceBetweenCars * (0 + Mathf.FloorToInt(carModels.Count / 2)));
-        var CarXSpawnMax = SpawnOffset + (distanceBetweenCars * (carTransform.Count + Mathf.CeilToInt(carModels.Count / 2)));
-        var Offset = 2 - TapLocation;
+        CarPlaceHandler(2);
+    }
+    public void GoLeft()
+    {
+        CarPlaceHandler(0);
+    }
+    
+    
+
+
+    private void CarPlaceHandler(int tapLocation)
+    {
+        float spawnOffset;
+        spawnOffset = (carModels.Count * distanceBetweenCars) * -1;
+        var carXSpawnMin = spawnOffset + (distanceBetweenCars * (0 + Mathf.FloorToInt(carModels.Count / 2)));
+        var carXSpawnMax = spawnOffset + (distanceBetweenCars * (carTransform.Count + Mathf.CeilToInt(carModels.Count / 2)));
+        var offset = 1 - tapLocation;
         
-        foreach (var Car in carTransform)
+        foreach (var car in carTransform)
         {
-            var xCarOld = Car.position.x;
-            var newCarX = xCarOld -= distanceBetweenCars * Offset *-1;
-            Car.position = new Vector3(newCarX, Car.position.y, Car.position.z);
-            if (Car.position.x > CarXSpawnMax)
+            var xCarOld = car.position.x;
+            var newCarX = xCarOld -= distanceBetweenCars * offset *-1;
+            car.position = new Vector3(newCarX, car.position.y, car.position.z);
+            if (car.position.x > carXSpawnMax)
             {
-                Debug.Log(Car.position.x);
-                var CarXFix = CarXSpawnMin + Car.position.x + distanceBetweenCars;
-                Car.position = new Vector3(CarXSpawnMin + CarXFix, Car.position.y, Car.position.z);
+                var CarXFix = carXSpawnMin + car.position.x + distanceBetweenCars;
+                car.position = new Vector3(carXSpawnMin + CarXFix, car.position.y, car.position.z);
             }
-            if (Car.position.x < CarXSpawnMin)
+            if (car.position.x < carXSpawnMin)
             {
-                Debug.Log(Car.position.x);
-                var CarXFix = (CarXSpawnMax + distanceBetweenCars)+ Car.position.x;
-                Car.position = new Vector3(CarXSpawnMax + CarXFix , Car.position.y, Car.position.z);
+                var carXFix = (carXSpawnMax + distanceBetweenCars)+ car.position.x;
+                car.position = new Vector3(carXSpawnMax + carXFix , car.position.y, car.position.z);
             }
-            if (Car.position.x == 0)
-                CurrentlySelectedCar = Car.gameObject;
+            if (car.position.x == 0)
+                currentlySelectedCar = car.gameObject;
 
         }
     }
 
-    private void carTouchHandler()
+    private void CarTouchHandler()
     {
         if(Input.touchCount > 0)
         {
-            var Touch = Input.GetTouch(0);
-            if (Touch.phase == TouchPhase.Began)
+            var touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
             {
-                var ZoneSplit = Screen.width / 5;
-                for (int i = 0; i < 5; i++)
+                
+                var zoneSplit = Screen.width / 3;
+                for (int i = 0; i < 3; i++)
                 {
-                    var ScreenZones = new Vector2(i * ZoneSplit, (i + 1) * ZoneSplit);
-                    if (Touch.position.x >= ScreenZones.x && Touch.position.x <= ScreenZones.y)
+                    var screenZones = new Vector2(i * zoneSplit, (i +1) * zoneSplit);
+                    if (touch.position.x >= screenZones.x && touch.position.x <= screenZones.y)
                     {
-                        carPlaceHandler(i);
+                        Debug.Log(i);
+                        CarPlaceHandler(i);
                     }
 
                 }

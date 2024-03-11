@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class CarUpgradeManager : MonoBehaviour
 {
     [SerializeField] private MockUpPlayer player;
+    [SerializeField] private StoreManager storeManager;
     private int maxSpeed;
     private int maxSpeedCount;
 
@@ -80,16 +81,16 @@ public class CarUpgradeManager : MonoBehaviour
     private void Awake()
     {
         InitializeUpgrades();
+       
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (selectedCar!= storeManager.currentlySelectedCar)
         {
             LoadCarStats();
         }
     }
-
 
     public void UpgrageMaxSpeed()
     {
@@ -147,6 +148,7 @@ public class CarUpgradeManager : MonoBehaviour
 
     public void LoadCarStats()
     {
+        selectedCar = storeManager.currentlySelectedCar;
         DataLoader.LoadCarUpgrades(selectedCar, this);
         var costMaxSpeed = upgradeCost * (MaxSpeedCount + 1);
         var costAcceleration = upgradeCost * (accelerationCount + 1);

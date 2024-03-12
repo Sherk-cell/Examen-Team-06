@@ -5,11 +5,11 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CarSpawner : MonoBehaviour
+public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawnPoints;
     [SerializeField] private float spawnCooldown = 5;
-    [SerializeField] private GameObject carObstacle;
+    [SerializeField] private GameObject[] obstacle;
     private float cooldownTimer = 0;
 
     private void Update()
@@ -25,7 +25,8 @@ public class CarSpawner : MonoBehaviour
     {
         int random = Random.Range(0, spawnPoints.Length);
         Vector3 spawnPos = spawnPoints[random].transform.position;
-        Instantiate(carObstacle, spawnPos, quaternion.identity);
+        int randomOb = Random.Range(0, obstacle.Length);
+        Instantiate(obstacle[randomOb], spawnPos, quaternion.identity);
         cooldownTimer = spawnCooldown;
     }
 }

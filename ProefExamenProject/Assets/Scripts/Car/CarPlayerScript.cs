@@ -22,32 +22,32 @@ namespace Car
         private float _currentRotationSpeed;
 
         // Start is called before the first frame update
-        private void Start() => characterController = GetComponent<CharacterController>();
+        private void Start() => _characterController = GetComponent<CharacterController>();
 
         private void Update()
         {
             // Player automatically goes forward
             var transform1 = transform;
-            characterController.Move(-transform1.right * (moveSpeed * Time.deltaTime));
+            _characterController.Move(-transform1.right * (moveSpeed * Time.deltaTime));
 
             // Move left or right while the corresponding button is held down
-            if (isGoingLeft || handler.phoneInput == InputState.Left)
+            if (_isGoingLeft || handler.phoneInput == InputHandler.InputState.Left)
             {
-                characterController.Move(-transform.forward * (moveSpeed * Time.deltaTime));
+                _characterController.Move(-transform.forward * (moveSpeed * Time.deltaTime));
                 RotateCar(-1);
             }
-            else if (isGoingRight || handler.phoneInput == InputState.Right)
+            else if (_isGoingRight || handler.phoneInput == InputHandler.InputState.Right)
             {
-                characterController.Move(transform.forward * (moveSpeed * Time.deltaTime));
+                _characterController.Move(transform.forward * (moveSpeed * Time.deltaTime));
                 RotateCar(1);
             }
-            if (handler.phoneInput == InputState.None)
+            if (handler.phoneInput == InputHandler.InputState.None)
             {
                 RotateCar(0);
                 if (moveSpeed < baseSpeed)
                     ReturnSpeed();
             }
-            else if (handler.phoneInput == InputState.Both)
+            else if (handler.phoneInput == InputHandler.InputState.Both)
                 Brake();
 
             if (moveSpeed <= 0f)
@@ -76,8 +76,8 @@ namespace Car
         {
             var targetAngle = dir > 0 ? 115f : dir < 0 ? 65f : 90f;
             var currentAngle = transform.localEulerAngles.y;
-            currentRotationSpeed = Mathf.Lerp(currentRotationSpeed, rotSpeed, Time.deltaTime);
-            var newAngle = Mathf.LerpAngle(currentAngle, targetAngle, currentRotationSpeed * Time.deltaTime);
+            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, _rotSpeed, Time.deltaTime);
+            var newAngle = Mathf.LerpAngle(currentAngle, targetAngle, _currentRotationSpeed * Time.deltaTime);
 
             // Apply the new rotation to the car
             transform.localEulerAngles = new Vector3(0, newAngle, 0);

@@ -1,66 +1,67 @@
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour
+namespace Input.Script
 {
+    public class InputHandler : MonoBehaviour
+    {
         
-    [Header("Phone Input Settings: ")]
-    public InputState phoneInput;
-    private bool leftTouched;
-    private bool rightTouched;
+        [Header("Phone Input Settings: ")]
+        public InputState phoneInput;
+        private bool _leftTouched;
+        private bool _rightTouched;
 
-    private void Update()
-    {
-        switch (Input.touchCount)
+
+        private void Update()
         {
-            case > 0:
-                TouchHandler();
-                break;
-            case < 1:
-                phoneInput = InputState.None;
-                break;
-        }
-    }
-
-
-    private void TouchHandler()
-    {
-        for (var i = 0; i < UnityEngine.Input.touchCount; i++)
-        {
-            var touch = UnityEngine.Input.touches[i];
-            if (touch.position.x < Screen.width / 2)
+            switch (UnityEngine.Input.touchCount)
             {
-                phoneInput = InputState.Left;
-                if (touch.phase == TouchPhase.Began)
-                    leftTouched = true;
-                if (touch.phase == TouchPhase.Ended)
-                    leftTouched = false;
-
-            }
-            else
-            {
-                phoneInput = InputState.Right;
-                if (touch.phase == TouchPhase.Began)
-                    rightTouched = true;
-                if (touch.phase == TouchPhase.Ended)
-                    rightTouched = false;
-            }
-            if (leftTouched && rightTouched)
-                    rightTouched = true;
-                if (touch.phase == TouchPhase.Ended)
-                    rightTouched = false;
-            }
-            if (leftTouched && rightTouched)
-            {
-                phoneInput = InputState.Both;
+                case > 0:
+                    TouchHandler();
+                    break;
+                case < 1:
+                    phoneInput = InputState.None;
+                    break;
             }
         }
-    }
 
 
-    public enum InputState
-    {
-        None = 0,
-        Left = 1,
-        Right = 2,
-        Both = 4
+        private void TouchHandler()
+        {
+            for (var i = 0; i < UnityEngine.Input.touchCount; i++)
+            {
+                var touch = UnityEngine.Input.touches[i];
+                if (touch.position.x < Screen.width / 2)
+                {
+                    phoneInput = InputState.Left;
+                    if (touch.phase == TouchPhase.Began)
+                        _leftTouched = true;
+                    if (touch.phase == TouchPhase.Ended)
+                        _leftTouched = false;
+
+                }
+                else
+                {
+                    phoneInput = InputState.Right;
+                    if (touch.phase == TouchPhase.Began)
+                        _rightTouched = true;
+                    if (touch.phase == TouchPhase.Ended)
+                        _rightTouched = false;
+                }
+                if (_leftTouched && _rightTouched)
+                {
+                    phoneInput = InputState.Both;
+                }
+            }
+        }
+
+        public enum InputState
+        {
+            None = 0,
+            Left = 1,
+            Right = 2,
+            Both = 4
+        }
     }
+}
+
+

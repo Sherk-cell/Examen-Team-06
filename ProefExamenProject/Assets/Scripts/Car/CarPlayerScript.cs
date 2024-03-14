@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Input.Script;
 using Spawner;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Car
         [SerializeField] private InputHandler handler;
         [SerializeField] private ConnectGenerator despawnAfterTime;
         private CharacterController _characterController;
-        
+
         private bool _isGoingLeft;
         private bool _isGoingRight;
         private const float _rotSpeed = 10f;

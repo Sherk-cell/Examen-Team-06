@@ -10,11 +10,15 @@ public class PrototypeEnemy : MonoBehaviour
     [SerializeField] private float baseSpeed;
     private GameObject _player;
 
+    [Header("Game Over Settings: ")] 
+    [SerializeField] private GameObject setGameOver;
+    
     private float _playerPosX;
     public GameObject model;
     [SerializeField] private float maxDistance;
     void Start()
     {
+        setGameOver.SetActive(false);
         _player = GameObject.FindGameObjectWithTag("Player");
     }
     
@@ -41,7 +45,10 @@ public class PrototypeEnemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == _player)
-            Destroy(_player);
+        if (other.CompareTag("Player"))
+        {
+            Time.timeScale = 0;
+            setGameOver.SetActive(true);
+        }
     }
 }

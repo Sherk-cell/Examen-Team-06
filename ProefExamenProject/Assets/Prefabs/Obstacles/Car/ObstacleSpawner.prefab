@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 6246745868457713936}
   - component: {fileID: 2263786466251580640}
   m_Layer: 0
-  m_Name: CarSpawner
+  m_Name: ObstacleSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

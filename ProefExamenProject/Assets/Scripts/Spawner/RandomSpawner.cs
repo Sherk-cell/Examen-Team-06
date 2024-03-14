@@ -29,7 +29,9 @@ namespace Spawner
             _spawnedObjects = new Queue<GameObject>();
             _occupiedPositions = new HashSet<Vector3>();
             
-            InvokeRepeating(nameof(SpawnIn), Random.Range(minSpawnTime, maxSpawnTime),maxSpawnTime);
+            SpawnIn();
+            
+            //InvokeRepeating(nameof(SpawnIn), Random.Range(minSpawnTime, maxSpawnTime),maxSpawnTime);
         } 
 
         private void SpawnIn()
@@ -40,19 +42,14 @@ namespace Spawner
                 return;
             }
 
-            // Choose a random object to spawn
-            var objectToSpawn = randomObjects[Random.Range(0, randomObjects.Length)];
-            var bounds = boundsObject.GetComponent<Renderer>().bounds;
-            var spawnPos = FindValidSpawnPosition(bounds);
-            
-            var newObject = Instantiate(objectToSpawn, spawnPos, Quaternion.identity);
-            _spawnedObjects.Enqueue(newObject);
-            
-            // ReSharper disable once InvertIf
-            if (_spawnedObjects is { } queue && queue.Count > maxSpawnedIn)
+            for (var i = 0; i < maxSpawnedIn; i++)
             {
-                var oldestObject = _spawnedObjects.Dequeue();
-                Destroy(oldestObject);
+                // Choose a random object to spawn
+                var objectToSpawn = randomObjects[Random.Range(0, randomObjects.Length)];
+                var bounds = boundsObject.GetComponent<Renderer>().bounds;
+                var spawnPos = FindValidSpawnPosition(bounds);
+            
+                Instantiate(objectToSpawn, spawnPos, Quaternion.identity, transform);
             }
         }
         

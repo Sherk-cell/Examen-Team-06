@@ -9,7 +9,7 @@ namespace Car
     public class CarPlayerScript : MonoBehaviour
     {
 
-        [Header("Car Controller: ")] 
+        [Header("Car Controller: ")]
         [SerializeField] private float baseSpeed = 7.5f;
         [SerializeField] private float accelerateSpeed = 1f;
         [SerializeField] private float moveSpeed = 5f;
@@ -53,9 +53,7 @@ namespace Car
                 Brake();
 
             if (moveSpeed <= 0f)
-            {
                 moveSpeed = 0;
-            }
         }
 
         private void Brake()
@@ -73,7 +71,7 @@ namespace Car
             if (moveSpeed > baseSpeed - 0.1f)
                 moveSpeed = baseSpeed;
         }
-        
+
         private void RotateCar(int dir)
         {
             var targetAngle = dir > 0 ? 115f : dir < 0 ? 65f : 90f;

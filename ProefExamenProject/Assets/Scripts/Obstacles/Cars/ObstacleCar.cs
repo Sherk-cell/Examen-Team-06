@@ -16,4 +16,12 @@ public class ObstacleCar : MonoBehaviour
     {
         transform.Translate(0 , 0, -speed * Time.deltaTime);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            
+        }
+    }
 }

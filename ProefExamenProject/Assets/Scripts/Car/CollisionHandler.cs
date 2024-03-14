@@ -15,4 +15,9 @@ public class CollisionHandler : MonoBehaviour
             gameOverScreen.MenuOpen();
         }
     }
+
+    void GameOver()
+    {
+        gameOverScreen.MenuOpen();
+    }
 }

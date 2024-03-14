@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameOverScreen : MonoBehaviour
 {
     [SerializeField] private GameObject screen;
-    public Scene mainMenu;
+    // public string mainMenu;
     
     public void Retry()
     {
@@ -18,10 +18,9 @@ public class GameOverScreen : MonoBehaviour
         screen.SetActive(false);
     }
 
-    public void MainMenu()
+    public void MainMenu(string levelName)
     {
-        string menuName = mainMenu.name;
-        SceneManager.LoadScene(menuName);
+        SceneManager.LoadScene(levelName);
         Time.timeScale = 1;
     }
 

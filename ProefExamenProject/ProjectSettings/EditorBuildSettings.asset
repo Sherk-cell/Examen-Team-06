@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenuDirk.unity
+    guid: 0e7407d40905d4d42a4e1e618611bdce
+  - enabled: 1
     path: Assets/Scenes/GridSpawner 3.unity
     guid: 3636b8d32d405124fafcde75dc729f67
   - enabled: 1

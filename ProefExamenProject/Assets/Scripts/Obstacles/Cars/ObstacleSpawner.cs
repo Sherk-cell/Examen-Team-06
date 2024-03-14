@@ -26,7 +26,7 @@ public class ObstacleSpawner : MonoBehaviour
         int random = Random.Range(0, spawnPoints.Length);
         Vector3 spawnPos = spawnPoints[random].transform.position;
         int randomOb = Random.Range(0, obstacle.Length);
-        Instantiate(obstacle[randomOb], spawnPos, quaternion.identity);
+        Instantiate(obstacle[randomOb], spawnPos, transform.rotation);
         cooldownTimer = spawnCooldown;
     }
 }

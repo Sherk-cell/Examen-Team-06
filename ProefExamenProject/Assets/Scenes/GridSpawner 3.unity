@@ -441,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2263786466251580640, guid: e767f31e9690cdc43ba12a358392ec0a, type: 3}
       propertyPath: obstacle.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2263786466251580640, guid: e767f31e9690cdc43ba12a358392ec0a, type: 3}
       propertyPath: obstacle.Array.data[0]
@@ -454,7 +454,7 @@ PrefabInstance:
     - target: {fileID: 2263786466251580640, guid: e767f31e9690cdc43ba12a358392ec0a, type: 3}
       propertyPath: obstacle.Array.data[2]
       value: 
-      objectReference: {fileID: 6363239713323448244, guid: febfeab7b4585de48a20fc48d3ecc62f, type: 3}
+      objectReference: {fileID: 3319617957290465325, guid: d344a2bc9c71cb94c992a13f11e70ec2, type: 3}
     - target: {fileID: 2607294727969287420, guid: e767f31e9690cdc43ba12a358392ec0a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.8
@@ -1160,8 +1160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 1481475234}
-  mainMenu:
-    m_Handle: 0
 --- !u!114 &1883993751
 MonoBehaviour:
   m_ObjectHideFlags: 0

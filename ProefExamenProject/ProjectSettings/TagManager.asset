@@ -6,11 +6,14 @@ TagManager:
   tags:
   - ScoreBoardScore
   - Car
+  - Obstacle
+  - StreetTile
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

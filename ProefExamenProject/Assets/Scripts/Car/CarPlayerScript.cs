@@ -1,8 +1,7 @@
-using System.Security.Cryptography.X509Certificates;
+using System;
+using Input.Script;
+using Spawner;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.UI;
 
 namespace Car
 {
@@ -10,14 +9,17 @@ namespace Car
     {
 
         [Header("Car Controller: ")] 
+        [SerializeField] private float baseSpeed = 7.5f;
+        [SerializeField] private float accelerateSpeed = 1f;
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private InputHandler handler;
-        private CharacterController characterController;
+        [SerializeField] private ConnectGenerator despawnAfterTime;
+        private CharacterController _characterController;
         
-        private bool isGoingLeft;
-        private bool isGoingRight;
-        private float rotSpeed = 10f;
-        private float currentRotationSpeed = 0f;
+        private bool _isGoingLeft;
+        private bool _isGoingRight;
+        private const float _rotSpeed = 10f;
+        private float _currentRotationSpeed;
 
         // Start is called before the first frame update
         private void Start() => characterController = GetComponent<CharacterController>();
@@ -42,16 +44,21 @@ namespace Car
             if (handler.phoneInput == InputState.None)
             {
                 RotateCar(0);
-                if (moveSpeed < 7.5f)
+                if (moveSpeed < baseSpeed)
                     ReturnSpeed();
             }
             else if (handler.phoneInput == InputState.Both)
                 Brake();
+
+            if (moveSpeed <= 0f)
+            {
+                moveSpeed = 0;
+            }
         }
 
         private void Brake()
         {
-            moveSpeed = Mathf.Lerp(moveSpeed, 0, Time.deltaTime * 2f);
+            moveSpeed = Mathf.Lerp(moveSpeed, 0, Time.deltaTime * accelerateSpeed);
 
             if (moveSpeed < 0.01f)
                 moveSpeed = 0;
@@ -59,10 +66,10 @@ namespace Car
 
         private void ReturnSpeed()
         {
-            moveSpeed = Mathf.Lerp(moveSpeed, 7.5f, Time.deltaTime * 2f);
+            moveSpeed = Mathf.Lerp(moveSpeed, baseSpeed, Time.deltaTime * accelerateSpeed);
 
-            if (moveSpeed > 7.4f)
-                moveSpeed = 7.5f;
+            if (moveSpeed > baseSpeed - 0.1f)
+                moveSpeed = baseSpeed;
         }
         
         private void RotateCar(int dir)
@@ -74,6 +81,17 @@ namespace Car
 
             // Apply the new rotation to the car
             transform.localEulerAngles = new Vector3(0, newAngle, 0);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("StreetTile"))
+                despawnAfterTime.getChunks += 1;
+        }
+
+        public void LoseSpeed(float speedLoss)
+        {
+            moveSpeed -= speedLoss;
         }
     }
 }

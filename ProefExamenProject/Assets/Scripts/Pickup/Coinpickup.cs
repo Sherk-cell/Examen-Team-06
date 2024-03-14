@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class Coinpickup : MonoBehaviour
+namespace Pickup
 {
-    public int coinWorth = 2;
-        
-    void OnCollisionEnter(Collision col)
+    public class Coinpickup : MonoBehaviour
     {
-        if (col.gameObject.CompareTag("Car")) ;
+        public int coinWorth = 2;
+        
+        private void OnCollisionEnter(Collision col)
         {
-            Destroy(gameObject);
-            ScoreCounter.instance.IncreaseScore(coinWorth);
+            if (col.gameObject.CompareTag("Car")) 
+            {
+                Destroy(gameObject);
+                ScoreCounter.instance.IncreaseScore(coinWorth);
+            }
         }
     }
 }

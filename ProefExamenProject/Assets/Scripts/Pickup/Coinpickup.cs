@@ -12,7 +12,7 @@ public class Coinpickup : MonoBehaviour
         if (col.gameObject.CompareTag("Car")) ;
         {
             Destroy(gameObject);
-            ScoreCounter.instance.IncreaseScore(coinWorth);
+            ScoreCounter.instance.IncreaseCoins(coinWorth);
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - StreetTile
   - Enemy
+  - UI
   layers:
   - Default
   - TransparentFX

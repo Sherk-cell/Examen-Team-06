@@ -18,7 +18,7 @@ public class HighScoreTable : MonoBehaviour
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
         entryTemplate.gameObject.SetActive(false);
-        
+
         AddHighscoreEntry(score:100);
         
         string jsonString = PlayerPrefs.GetString("highscoreTable");

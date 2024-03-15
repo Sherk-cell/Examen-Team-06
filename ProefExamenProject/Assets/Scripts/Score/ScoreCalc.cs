@@ -26,9 +26,7 @@ public class ScoreCalc : MonoBehaviour
     void Update()
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
-        {
             Die();
-        }
     }
 
 }

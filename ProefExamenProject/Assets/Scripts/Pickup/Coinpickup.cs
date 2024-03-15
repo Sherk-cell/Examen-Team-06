@@ -9,7 +9,7 @@ public class Coinpickup : MonoBehaviour
         
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Car")) ;
+        if (col.gameObject.CompareTag("Player")) ;
         {
             Destroy(gameObject);
             ScoreCounter.instance.IncreaseCoins(coinWorth);

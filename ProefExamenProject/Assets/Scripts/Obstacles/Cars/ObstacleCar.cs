@@ -6,10 +6,13 @@ using UnityEngine;
 public class ObstacleCar : MonoBehaviour
 {
     [SerializeField] private float speed;
-
+    [SerializeField] private GameObject gameOver;
     private void Start()
     {
         Destroy(this.gameObject, 10);
+        gameOver = GameObject.Find("Panel");
+        if (gameOver != null)
+            gameOver.SetActive(false);
     }
 
     void Update()
@@ -21,7 +24,9 @@ public class ObstacleCar : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            
+            if (gameOver != null)
+                gameOver.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

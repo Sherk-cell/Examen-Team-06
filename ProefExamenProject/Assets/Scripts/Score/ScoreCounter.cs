@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
 
@@ -13,7 +14,7 @@ public class ScoreCounter : MonoBehaviour
     public int currentScore = 0;
     public int currentCoins = 0;
     public int endScore;
-    public ScoreCalc scoreCalc;
+    [CanBeNull] public ScoreCalc scoreCalc;
 
     void Awake()
     {

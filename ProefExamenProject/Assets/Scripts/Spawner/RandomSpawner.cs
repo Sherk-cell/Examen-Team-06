@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 namespace Spawner
@@ -28,10 +29,11 @@ namespace Spawner
         {
             _spawnedObjects = new Queue<GameObject>();
             _occupiedPositions = new HashSet<Vector3>();
+
+            var randomChance = Random.Range(0, 100);
             
-            SpawnIn();
-            
-            //InvokeRepeating(nameof(SpawnIn), Random.Range(minSpawnTime, maxSpawnTime),maxSpawnTime);
+            if (randomChance < 50)
+                SpawnIn();
         } 
 
         private void SpawnIn()
@@ -42,7 +44,7 @@ namespace Spawner
                 return;
             }
 
-            for (var i = 0; i < maxSpawnedIn; i++)
+            for (var i = 0; i < Random.Range(1,maxSpawnedIn); i++)
             {
                 // Choose a random object to spawn
                 var objectToSpawn = randomObjects[Random.Range(0, randomObjects.Length)];
@@ -67,7 +69,7 @@ namespace Spawner
                 var gridX = Random.Range(0, gridCols);
                 var gridZ = Random.Range(0, gridRows);
                 
-                spawnPos = boundsObject.transform.position + new Vector3(gridX * cellSizeX, 0.95f, gridZ * cellSizeZ) - bounds.extents;
+                spawnPos = boundsObject.transform.position + new Vector3(gridX * cellSizeX, 0.2459991f, gridZ * cellSizeZ) - bounds.extents;
                 if (!_occupiedPositions.Contains(spawnPos))
                 {
                     _occupiedPositions.Add(spawnPos);

@@ -16,6 +16,11 @@ namespace Car
         [SerializeField] private ConnectGenerator despawnAfterTime;
         private CharacterController _characterController;
 
+        [Header("Angle Settings: ")] 
+        [SerializeField] [Range(0, 360)] private float leftAngle;
+        [SerializeField] [Range(0, 360)] private float rightAngle;
+        [SerializeField] [Range(0, 360)] private float straightAngle;
+
         private bool _isGoingLeft;
         private bool _isGoingRight;
         private bool _getOne;

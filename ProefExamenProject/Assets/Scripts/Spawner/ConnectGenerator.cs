@@ -44,13 +44,13 @@ namespace Spawner
 
         private void Update()
         {
-            if (getChunks >= 8 && !_generateOnce)
+            if (getChunks >= 10 && !_generateOnce)
             {
                 _generateOnce = true;
                 _afterFirstGeneration = true;
                 if (!_generateMore)
                 {
-                    var chunksToRemove = new List<GameObject>(_spawnedChunks.Take(2));
+                    var chunksToRemove = new List<GameObject>(_spawnedChunks.Take(1));
                     foreach (var chunk in chunksToRemove)
                     {
                         _spawnedChunks.Remove(chunk);
@@ -59,7 +59,7 @@ namespace Spawner
                 }
                 else
                 {
-                    var chunksToRemove = new List<GameObject>(_spawnedChunks.Take(3));
+                    var chunksToRemove = new List<GameObject>(_spawnedChunks.Take(2));
                     foreach (var chunk in chunksToRemove)
                     {
                         _spawnedChunks.Remove(chunk);
@@ -108,7 +108,7 @@ namespace Spawner
             else
             {
                 _generateOnce = false;
-                var value = !_generateMore ? 2 : 3;
+                var value = !_generateMore ? 1 : 2;
                 
                 for (var i = 0; i < value; i++)
                 {

@@ -18,6 +18,7 @@ namespace Car
 
         private bool _isGoingLeft;
         private bool _isGoingRight;
+        private bool _getOne;
         private const float _rotSpeed = 10f;
         private float _currentRotationSpeed;
 
@@ -83,8 +84,16 @@ namespace Car
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("StreetTile"))
+            if (other.CompareTag("StreetTile") && !_getOne)
+            {
+                _getOne = true;
                 despawnAfterTime.getChunks += 1;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            _getOne = false;
         }
 
         public void LoseSpeed(float speedLoss)

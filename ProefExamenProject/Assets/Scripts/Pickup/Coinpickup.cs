@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Coinpickup : MonoBehaviour
+namespace Pickup
 {
-    private int coinWorth = 1;
-        
-    void OnCollisionEnter(Collision col)
+    public class Coinpickup : MonoBehaviour
     {
-        if (col.gameObject.CompareTag("Player")) ;
+        private const int CoinWorth = 1;
+        [SerializeField] private AudioSource coinEffect;
+
+        private void Start() => transform.rotation = Quaternion.Euler(90, 0, 0);
+    
+        private void OnCollisionEnter(Collision col)
         {
-            Destroy(gameObject);
-            ScoreCounter.instance.IncreaseCoins(coinWorth);
+            if (col.gameObject.CompareTag("Player")) ;
+            {
+                GameObject o;
+                (o = gameObject).GetComponent<BoxCollider>().enabled = false;
+                coinEffect.Play();
+                Destroy(o, 0.5f);
+                
+                ScoreCounter.instance.IncreaseCoins(CoinWorth);
+            }
         }
     }
 }

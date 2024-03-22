@@ -12,22 +12,16 @@ namespace Spawner
         [SerializeField] private GameObject[] randomObjects;
         [SerializeField] private GameObject boundsObject;
         [SerializeField] private int maxSpawnedIn = 10;
-        
-        [Header("Time Spawn Settings: ")]
-        [SerializeField] private float minSpawnTime = 0.5f;
-        [SerializeField] private float maxSpawnTime = 2.5f;
 
         [Header("Grid Settings: ")] 
         [SerializeField] [Range(0, 500)] private int gridRows;
         [SerializeField] [Range(0, 500)] private int gridCols;
-
-        private Queue<GameObject> _spawnedObjects;
+        
         private HashSet<Vector3> _occupiedPositions;
 
         // Start is called before the first frame update
         private void Start()
         {
-            _spawnedObjects = new Queue<GameObject>();
             _occupiedPositions = new HashSet<Vector3>();
 
             var randomChance = Random.Range(0, 100);
@@ -47,10 +41,12 @@ namespace Spawner
             for (var i = 0; i < Random.Range(1,maxSpawnedIn); i++)
             {
                 // Choose a random object to spawn
-                var objectToSpawn = randomObjects[Random.Range(0, randomObjects.Length)];
+                var getInt = Random.Range(0, randomObjects.Length);
+                var objectToSpawn = randomObjects[getInt];
                 var bounds = boundsObject.GetComponent<Renderer>().bounds;
                 var spawnPos = FindValidSpawnPosition(bounds);
             
+               
                 Instantiate(objectToSpawn, spawnPos, Quaternion.identity, transform);
             }
         }
@@ -69,7 +65,7 @@ namespace Spawner
                 var gridX = Random.Range(0, gridCols);
                 var gridZ = Random.Range(0, gridRows);
                 
-                spawnPos = boundsObject.transform.position + new Vector3(gridX * cellSizeX, 0.2459991f, gridZ * cellSizeZ) - bounds.extents;
+                spawnPos = boundsObject.transform.position + new Vector3(gridX * cellSizeX, 0.04999876f, gridZ * cellSizeZ) - bounds.extents;
                 if (!_occupiedPositions.Contains(spawnPos))
                 {
                     _occupiedPositions.Add(spawnPos);

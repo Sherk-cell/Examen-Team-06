@@ -411,6 +411,7 @@ MonoBehaviour:
   - {fileID: 4223940054163096579, guid: 6410dd223bb30164f8153a227ee02b48, type: 3}
   - {fileID: 3319617957290465325, guid: d344a2bc9c71cb94c992a13f11e70ec2, type: 3}
   - {fileID: 3316807772087167634, guid: a30da49137833ad4d96643b406e11814, type: 3}
+  - {fileID: 8188317414648448166, guid: fea01e86c98be4c46adf595900efa8e6, type: 3}
   boundsObject: {fileID: 5464567973695064830}
   maxSpawnedIn: 3
   minSpawnTime: 0.5
@@ -699,12 +700,13 @@ MonoBehaviour:
   - {fileID: 4223940054163096579, guid: 6410dd223bb30164f8153a227ee02b48, type: 3}
   - {fileID: 3319617957290465325, guid: d344a2bc9c71cb94c992a13f11e70ec2, type: 3}
   - {fileID: 3316807772087167634, guid: a30da49137833ad4d96643b406e11814, type: 3}
+  - {fileID: 8188317414648448166, guid: fea01e86c98be4c46adf595900efa8e6, type: 3}
   boundsObject: {fileID: 7232048584116404356}
   maxSpawnedIn: 3
   minSpawnTime: 0.5
   maxSpawnTime: 2.5
-  gridRows: 0
-  gridCols: 0
+  gridRows: 5
+  gridCols: 5
 --- !u!1 &7655904066122916382
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,9 +17,9 @@ namespace Car
         private CharacterController _characterController;
 
         [Header("Angle Settings: ")] 
-        [SerializeField] [Range(0, 360)] private float leftAngle;
-        [SerializeField] [Range(0, 360)] private float rightAngle;
-        [SerializeField] [Range(0, 360)] private float straightAngle;
+        [SerializeField] [Range(-360, 360)] private float leftAngle;
+        [SerializeField] [Range(-360, 360)] private float rightAngle;
+        [SerializeField] [Range(-360, 360)] private float straightAngle;
 
         private bool _isGoingLeft;
         private bool _isGoingRight;
@@ -78,7 +78,7 @@ namespace Car
 
         private void RotateCar(int dir)
         {
-            var targetAngle = dir > 0 ? 115f : dir < 0 ? 65f : 90f;
+            var targetAngle = dir > 0 ? rightAngle : dir < 0 ? leftAngle : straightAngle;
             var currentAngle = transform.localEulerAngles.y;
             _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, _rotSpeed, Time.deltaTime);
             var newAngle = Mathf.LerpAngle(currentAngle, targetAngle, _currentRotationSpeed * Time.deltaTime);

@@ -1,17 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Car;
 using UnityEngine;
 
-public class SlowDownObstacle : MonoBehaviour
+namespace Obstacles
 {
-   private void OnCollisionEnter(Collision collision)
+   public class SlowDownObstacle : MonoBehaviour
    {
-      if (collision.gameObject.CompareTag("Player"))
+
+      private void Awake() => transform.rotation = Quaternion.Euler(0, 90,0);
+      
+      private void OnCollisionEnter(Collision collision)
       {
-         collision.gameObject.GetComponent<CarPlayerScript>().LoseSpeed(5f);
-         Destroy(this.gameObject);
+         if (collision.gameObject.CompareTag("Player"))
+         {
+            collision.gameObject.GetComponent<CarPlayerScript>().LoseSpeed(5f);
+            Destroy(this.gameObject);
+         }
       }
    }
 }

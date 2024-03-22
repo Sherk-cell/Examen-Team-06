@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Obstacles.Cars
@@ -6,12 +7,18 @@ namespace Obstacles.Cars
     {
         [SerializeField] private float speed;
         [SerializeField] private GameObject gameOver;
+        
+        private  GameObject[] _allObjects;
+        
         private void Start()
         {
-            Destroy(this.gameObject, 10);
-            gameOver = GameObject.Find("Panel");
-            if (gameOver != null)
-                gameOver.SetActive(false);
+            _allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+            
+            foreach (var obj in _allObjects)
+            {
+                if (!obj.activeInHierarchy && obj.name == "Panel")
+                    obj.SetActive(false);
+            }
         }
 
         private void Update()
@@ -23,10 +30,21 @@ namespace Obstacles.Cars
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                if (gameOver != null)
-                    gameOver.SetActive(true);
+                _allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+            
+                foreach (var obj in _allObjects)
+                {
+                    if (!obj.activeInHierarchy && obj.name == "Panel")
+                        obj.SetActive(true);
+                }
                 Time.timeScale = 0;
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Deleter"))
+                Destroy(gameObject);
         }
     }
 }
